@@ -17,7 +17,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     let activityViewController = UIActivityViewController(activityItems: ["Share"], applicationActivities: nil)
     
     
-    var _tencentOAuth:TencentOAuth!
+    //var _tencentOAuth:TencentOAuth!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.titleArray.count
@@ -46,13 +46,19 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        _tencentOAuth = TencentOAuth.init(appId: "1108104828", andDelegate: nil)
+        //_tencentOAuth = TencentOAuth.init(appId: "1108104828", andDelegate: nil)
     }
     
     
     func sendMessage(_ sender: AnyObject) {
+        
         self.present(activityViewController, animated: true, completion: nil)
+        
+        let popover = activityViewController.popoverPresentationController
+        popover!.sourceView = self.view //点击该button弹出
+        popover!.sourceRect = CGRect(x: 0, y: 0, width: 20, height: 30)
+        popover!.permittedArrowDirections = UIPopoverArrowDirection.any
+        
         //消息分享相关代码
         /*let txtObj = QQApiTextObject(text: "欢迎访问 hangge.com")
         let req = SendMessageToQQReq(content: txtObj)
@@ -62,7 +68,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         handleSendResult(sendResult:  sendResult)*/
     }
     
-    func handleSendResult(sendResult:QQApiSendResultCode){
+    /*func handleSendResult(sendResult:QQApiSendResultCode){
         var message = ""
         switch(sendResult){
         case EQQAPIAPPNOTREGISTED:
@@ -84,7 +90,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             message = "发送成功"
         }
         print(message)
-    }
+    }*/
 
     /*
     // MARK: - Navigation
