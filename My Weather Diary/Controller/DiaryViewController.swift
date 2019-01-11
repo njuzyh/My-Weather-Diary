@@ -12,6 +12,7 @@ import AVFoundation
 
 class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDelegate{
     
+    @IBOutlet weak var titile: UILabel!
     
     @IBOutlet weak var finishButton: UIBarButtonItem!
     
@@ -28,10 +29,22 @@ class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudio
     // 音频引擎 用于进行音频输入
     private let audioEngine = AVAudioEngine()
     
+    var recordingFile = AVAudioFile()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("编写日记")
+        
+        titile.textColor = mainColor
+        if weather.now != nil && weather.update != nil
+        {
+            titile.text = (weather.now?.cond_txt)! + " " + weather.update!.loc!
+        }
+        else
+        {
+            titile.text = "晴 2019-01-01 00:00"
+        }
         // Do any additional setup after loading the view.
     }
   
@@ -129,7 +142,6 @@ class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudio
             
         }
         audioEngine.prepare()
-        
         do {
             try audioEngine.start()
             
@@ -143,6 +155,37 @@ class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudio
             speakButton.isEnabled = true
         } else {
             speakButton.isEnabled = false
+        }
+    }
+    
+    
+    @IBAction func record(sender: AnyObject) {
+        self.createRecordingFile()
+        
+        self.audioEngine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: self.audioEngine.mainMixerNode.outputFormat(forBus: 0)) { (buffer, time) -> Void in
+            do {
+                try self.recordingFile.write(from: buffer)
+            } catch (let error) {
+                print("RECORD ERROR", error);
+            }
+            return
+        }
+    }
+    
+   @IBAction func stop(sender: AnyObject) {
+        self.audioEngine.mainMixerNode.removeTap(onBus: 0)
+    }
+    
+    func createRecordingFile() {
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            var url = URL(fileURLWithPath: dir)
+            url.appendPathComponent("my_file.caf")
+            let format = self.audioEngine.outputNode.inputFormat(forBus: 0)
+            do {
+                self.recordingFile = try AVAudioFile(forWriting: url, settings:format.settings)
+            } catch (let error) {
+                print("CREATE RECORDING FILE ERROR", error);
+            }
         }
     }
     

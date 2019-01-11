@@ -481,21 +481,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4E-dz-vsL">
+                                <rect key="frame" x="31" y="584" width="62" height="30"/>
+                                <state key="normal" title="开始录音"/>
+                                <connections>
+                                    <action selector="recordWithSender:" destination="Nuw-oY-Hpp" eventType="touchUpInside" id="dwE-ZG-5ph"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkY-tL-keq">
+                                <rect key="frame" x="289" y="584" width="62" height="30"/>
+                                <state key="normal" title="停止录音"/>
+                                <connections>
+                                    <action selector="stopWithSender:" destination="Nuw-oY-Hpp" eventType="touchUpInside" id="Avw-hk-qxd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="r4E-dz-vsL" firstAttribute="baseline" secondItem="xkY-tL-keq" secondAttribute="baseline" id="9yb-rV-XQc"/>
                             <constraint firstItem="wdL-d5-7Qh" firstAttribute="trailing" secondItem="Yfh-e5-ZeO" secondAttribute="trailing" id="BEZ-Fw-Rw3"/>
                             <constraint firstItem="9to-YY-sxm" firstAttribute="leading" secondItem="wdL-d5-7Qh" secondAttribute="leading" id="D1L-Cp-OVf"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wSQ-7G-pTt" secondAttribute="trailing" constant="20" symbolic="YES" id="I8v-Cf-zLk"/>
                             <constraint firstItem="wSQ-7G-pTt" firstAttribute="leading" secondItem="rAN-8M-FSc" secondAttribute="leading" constant="150" id="K7H-zo-g7L"/>
+                            <constraint firstItem="r4E-dz-vsL" firstAttribute="baseline" secondItem="wSQ-7G-pTt" secondAttribute="baseline" id="MTh-zt-3G2"/>
                             <constraint firstItem="wSQ-7G-pTt" firstAttribute="top" secondItem="Yfh-e5-ZeO" secondAttribute="bottom" constant="50" id="UDM-NW-EA0"/>
                             <constraint firstItem="wSQ-7G-pTt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rAN-8M-FSc" secondAttribute="leading" constant="20" symbolic="YES" id="a1p-zW-oh6"/>
                             <constraint firstAttribute="bottom" secondItem="wSQ-7G-pTt" secondAttribute="bottom" constant="34" id="aoF-mA-nUS"/>
+                            <constraint firstItem="xkY-tL-keq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wSQ-7G-pTt" secondAttribute="trailing" constant="8" symbolic="YES" id="apU-dc-a4G"/>
                             <constraint firstItem="wdL-d5-7Qh" firstAttribute="trailing" secondItem="9to-YY-sxm" secondAttribute="trailing" id="fxK-v5-0GE"/>
                             <constraint firstItem="9to-YY-sxm" firstAttribute="top" secondItem="wdL-d5-7Qh" secondAttribute="top" id="g6C-nM-9cA"/>
+                            <constraint firstItem="wdL-d5-7Qh" firstAttribute="trailing" secondItem="xkY-tL-keq" secondAttribute="trailing" constant="24" id="h31-Fx-7LZ"/>
                             <constraint firstItem="Yfh-e5-ZeO" firstAttribute="top" secondItem="9to-YY-sxm" secondAttribute="bottom" id="jkv-q6-vqm"/>
                             <constraint firstItem="Yfh-e5-ZeO" firstAttribute="leading" secondItem="wdL-d5-7Qh" secondAttribute="leading" id="kPX-C3-0AX"/>
                             <constraint firstAttribute="trailing" secondItem="wSQ-7G-pTt" secondAttribute="trailing" constant="150" id="ns7-7Z-0Ks"/>
+                            <constraint firstItem="r4E-dz-vsL" firstAttribute="leading" secondItem="wdL-d5-7Qh" secondAttribute="leading" constant="31" id="qGJ-bN-JIj"/>
+                            <constraint firstItem="wSQ-7G-pTt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r4E-dz-vsL" secondAttribute="trailing" constant="8" symbolic="YES" id="syT-rv-H38"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wdL-d5-7Qh"/>
                     </view>
@@ -511,6 +531,7 @@
                         <outlet property="finishButton" destination="FOY-ca-J8s" id="aOA-iE-W91"/>
                         <outlet property="speakButton" destination="wSQ-7G-pTt" id="SZp-3x-gxk"/>
                         <outlet property="textView" destination="Yfh-e5-ZeO" id="5Gg-4R-pWj"/>
+                        <outlet property="titile" destination="9to-YY-sxm" id="Pan-TA-5fR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDe-lI-dKk" userLabel="First Responder" sceneMemberID="firstResponder"/>

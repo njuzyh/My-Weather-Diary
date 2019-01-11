@@ -14,7 +14,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let titleArray = ["个人主页", "城市管理", "天气日记", "我的收藏", "设置", "分享", "退出登录"]
     let imageArray = ["personal", "city", "diary", "star", "setting", "share", "newexit"]
-    let activityViewController = UIActivityViewController(activityItems: ["Share"], applicationActivities: nil)
+    let activityViewController = UIActivityViewController(activityItems: ["我正在使用My Weather Diary，一起来用啊"], applicationActivities: nil)
     
     
     //var _tencentOAuth:TencentOAuth!
