@@ -33,7 +33,6 @@
 		187EC40921E64FD40024D8C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187EC40821E64FD40024D8C3 /* SystemConfiguration.framework */; };
 		187EC40B21E652860024D8C3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 187EC40A21E652860024D8C3 /* libc++.tbd */; };
 		187EC40E21E658AC0024D8C3 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187EC40D21E658AB0024D8C3 /* TencentOpenAPI.framework */; };
-		18827D9B21B410360001ACA2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18827D9A21B410360001ACA2 /* Default-568h@2x.png */; };
 		18827D9D21B413130001ACA2 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18827D9C21B413130001ACA2 /* CityViewController.swift */; };
 		18827D9F21B41FC50001ACA2 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18827D9E21B41FC50001ACA2 /* city.plist */; };
 		1898E48E21E38C7B0062DE97 /* HotCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1898E48D21E38C7B0062DE97 /* HotCity.plist */; };
@@ -86,7 +85,6 @@
 		187EC40A21E652860024D8C3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		187EC40C21E655640024D8C3 /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		187EC40D21E658AB0024D8C3 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		18827D9A21B410360001ACA2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		18827D9C21B413130001ACA2 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		18827D9E21B41FC50001ACA2 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		1898E48D21E38C7B0062DE97 /* HotCity.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HotCity.plist; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 		1877DADC219992B40083512C = {
 			isa = PBXGroup;
 			children = (
-				18827D9A21B410360001ACA2 /* Default-568h@2x.png */,
 				1877DAE7219992B40083512C /* My Weather Diary */,
 				1877DAFC219992B50083512C /* My Weather DiaryTests */,
 				1877DAE6219992B40083512C /* Products */,
@@ -344,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1877DAF3219992B50083512C /* LaunchScreen.storyboard in Resources */,
-				18827D9B21B410360001ACA2 /* Default-568h@2x.png in Resources */,
 				18827D9F21B41FC50001ACA2 /* city.plist in Resources */,
 				1898E48E21E38C7B0062DE97 /* HotCity.plist in Resources */,
 				1877DAF0219992B50083512C /* Assets.xcassets in Resources */,
@@ -645,7 +641,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.njuzyh.My-Weather-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "/Users/apple/Downloads/My Weather Diary/My Weather Diary/Support/bridge.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,7 +664,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.njuzyh.My-Weather-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "/Users/apple/Downloads/My Weather Diary/My Weather Diary/Support/bridge.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

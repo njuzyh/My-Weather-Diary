@@ -153,21 +153,6 @@
             </objects>
             <point key="canvasLocation" x="-615.20000000000005" y="-827.58620689655174"/>
         </scene>
-        <!--Container View Controller-->
-        <scene sceneID="3Ex-ed-8FE">
-            <objects>
-                <viewController id="0bu-xU-CQW" customClass="ContainerViewController" customModule="My_Weather_Diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ToG-3p-vrH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="4gc-HS-N6S"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wWo-WN-wTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2226" y="-957"/>
-        </scene>
         <!--Main-->
         <scene sceneID="Mpa-oU-Ch7">
             <objects>
@@ -181,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="lsP-cY-l0Q" kind="relationship" relationship="rootViewController" id="x1r-gz-B44"/>
+                        <segue destination="lsP-cY-l0Q" kind="relationship" relationship="rootViewController" id="zWQ-Hc-qHi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRf-Dj-eIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,7 +190,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Nuw-oY-Hpp" kind="show" identifier="showDiary" id="Cs6-m5-cP2"/>
+                                    <segue destination="Nuw-oY-Hpp" kind="show" identifier="showDiary" id="gcw-bc-rSX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -327,6 +312,9 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" header="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="W4d-Us-xoR" firstAttribute="top" secondItem="jzt-4m-A3c" secondAttribute="top" constant="120" id="3qE-Cs-MIO"/>
                             <constraint firstItem="5HO-wU-3aW" firstAttribute="leading" secondItem="qVk-6R-gQa" secondAttribute="leading" id="48f-2m-SYm"/>
@@ -388,7 +376,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yfh-e5-ZeO">
                                 <rect key="frame" x="0.0" y="114" width="375" height="401"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -411,7 +398,7 @@
                         <viewLayoutGuide key="safeArea" id="wdL-d5-7Qh"/>
                     </view>
                     <navigationItem key="navigationItem" title="日记" id="FS2-8g-KQa">
-                        <barButtonItem key="backBarButtonItem" title="返回" id="628-8g-Bsg"/>
+                        <barButtonItem key="backBarButtonItem" title="返回" id="5eQ-Wh-Gfw"/>
                         <barButtonItem key="rightBarButtonItem" title="完成" id="FOY-ca-J8s">
                             <connections>
                                 <action selector="finishWriting:" destination="Nuw-oY-Hpp" id="GfN-6h-nSi"/>

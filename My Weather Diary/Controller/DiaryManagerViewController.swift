@@ -89,7 +89,15 @@ class DiaryManagerViewController: UITableViewController, UIGestureRecognizerDele
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        defer {
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
+        if let navigationController = self.navigationController {
+            guard navigationController.topViewController == self else {
+                return
+            }
+        }
+        //tableView.deselectRow(at: indexPath, animated: false)
         let cell = tableView.cellForRow(at: indexPath)
         print("点击了 \(cell?.textLabel?.text ?? "")")
         performSegue(withIdentifier: "showDiary", sender: nil)

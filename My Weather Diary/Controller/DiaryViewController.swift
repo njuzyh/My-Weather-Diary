@@ -31,7 +31,7 @@ class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("编写日记")
         // Do any additional setup after loading the view.
     }
   
@@ -48,6 +48,7 @@ class DiaryViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudio
     }
     
     @IBAction func finishWriting(_ sender: Any) {
+        
     }
     
     // MARK: - *** 获取用户权限 ***

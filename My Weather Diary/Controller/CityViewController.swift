@@ -135,7 +135,7 @@ class CityViewController: UIViewController, UISearchBarDelegate, UITableViewDele
             if indexPath.section > 2 {
                 /// 请求数据
                 //NetworkManager.weatherData(cityName: cell?.textLabel?.text ?? "")
-                self.navigationController?.pushViewController(CenterViewController(), animated: true)
+                //self.navigationController?.pushViewController(CenterViewController(), animated: true)
             }else {
                 return
             }

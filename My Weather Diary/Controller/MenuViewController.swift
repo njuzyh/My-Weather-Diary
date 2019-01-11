@@ -37,6 +37,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.row == 5 {
             sendMessage(1 as AnyObject)
         }
+        else if indexPath.row == 2{
+            performSegue(withIdentifier: "showDiaryMenu", sender: nil)
+        }
     }
 
     override func viewDidLoad() {
