@@ -37,6 +37,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.row == 5 {
             sendMessage(1 as AnyObject)
         }
+        else if indexPath.row == 2 {
+            self.performSegue(withIdentifier: "showDiaryMenu", sender: nil)
+        }
     }
 
     override func viewDidLoad() {
@@ -53,6 +56,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func sendMessage(_ sender: AnyObject) {
         self.present(activityViewController, animated: true, completion: nil)
+        
+        let popover = activityViewController.popoverPresentationController
+        popover!.sourceView = self.view //点击该button弹出
+        popover!.sourceRect = CGRect(x: 0, y: 0, width: 20, height: 30)
+        popover!.permittedArrowDirections = UIPopoverArrowDirection.any
         //消息分享相关代码
         /*let txtObj = QQApiTextObject(text: "欢迎访问 hangge.com")
         let req = SendMessageToQQReq(content: txtObj)
