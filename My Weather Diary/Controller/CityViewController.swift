@@ -55,6 +55,8 @@ class CityViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     
     var filteredCities = ["Beijing", "ShangHai", "Nanjing", "GuangZhou", "HangZhou"]
     var cities = [String]()
+    /// 定位城市
+    var locateCity: String?
     //var cityResult : CityResultController = CityResultController()
     
     override func viewDidLoad() {
@@ -79,15 +81,26 @@ class CityViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         self.tableView.sectionIndexBackgroundColor = UIColor.clear
         self.cityResults.isHidden = true
         self.tableView.isHidden = false
+        
+        // 定位
+        MyLocation.getCurrentCity(compeletion: { (city) in
+            self.locateCity = city
+            // 更新数据
+            let indexPath = IndexPath(row: 0, section: 0)
+            DispatchQueue.main.async {
+                self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
+        })
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.tableView == tableView {
             if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: currentCityCell, for: indexPath) as! CurrentCityTableViewCell
-                //cell.currentCity = locateCity
+                cell.currentCity = locateCity
                 cell.callBack = { [weak self] in
-                    self?.navigationController?.pushViewController(CenterViewController(), animated: true)
+                    self!.navigationController?.popViewController(animated: true)
+                    //self?.navigationController?.pushViewController(CenterViewController(), animated: true)
                 }
                 return cell
             }else if indexPath.section == 1{
@@ -95,16 +108,18 @@ class CityViewController: UIViewController, UISearchBarDelegate, UITableViewDele
                 // 点击最近城市按钮调用此闭包
                 cell.callBack = { [weak self] (btn) in
                     // 请求数据
-                    //NetworkManager.weatherData(cityName: btn.titleLabel?.text ?? "")
-                    self?.navigationController?.pushViewController(CenterViewController(), animated: true)
+                    WeatherQuery.weatherData(cityName: btn.titleLabel?.text ?? "")
+                    self!.navigationController?.popViewController(animated: true)
+                    //self?.navigationController?.pushViewController(CenterViewController(), animated: true)
                 }
                 return cell
             }else if indexPath.section == 2 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: hotCityCell, for: indexPath) as! HotCityTableViewCell
                 cell.callBack = { [weak self] (btn) in
                     // 请求数据
-                    //NetworkManager.weatherData(cityName: btn.titleLabel?.text ?? "")
-                    self?.navigationController?.pushViewController(CenterViewController(), animated: true)
+                    WeatherQuery.weatherData(cityName: btn.titleLabel?.text ?? "")
+                    self!.navigationController?.popViewController(animated: true)
+                    //self?.navigationController?.pushViewController(CenterViewController(), animated: true)
                 }
                 return cell
             }else {
@@ -134,12 +149,30 @@ class CityViewController: UIViewController, UISearchBarDelegate, UITableViewDele
             print("点击了 \(cell?.textLabel?.text ?? "")")
             if indexPath.section > 2 {
                 /// 请求数据
-                //NetworkManager.weatherData(cityName: cell?.textLabel?.text ?? "")
+                WeatherQuery.weatherData(cityName: cell?.textLabel?.text ?? "")
+                self.navigationController?.popViewController(animated: true)
+                //self.dismiss(animated: true, completion: nil)
                 //self.navigationController?.pushViewController(CenterViewController(), animated: true)
             }else {
                 return
             }
         }
+        else
+        {
+            tableView.deselectRow(at: indexPath, animated: false)
+            let cell = tableView.cellForRow(at: indexPath)
+            print("点击了 \(cell?.textLabel?.text ?? "")")
+            /// 请求数据
+            WeatherQuery.weatherData(cityName: cell?.textLabel?.text ?? "")
+            self.navigationController?.popViewController(animated: true)
+            //self.navigationController?.pushViewController(CenterViewController(), animated: true)
+            //self.dismiss(animated: true, completion: nil)
+            performSegue(withIdentifier: "backtoMain", sender: nil)
+        }
+    }
+    
+    @IBAction func unwindSegue(_ sender: UIStoryboardSegue) {
+        // Pull any data from the view controller which initiated the unwind segue.
     }
     
     // MARK: 右边索引

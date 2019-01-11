@@ -75,11 +75,11 @@ class CurrentCityTableViewCell: UITableViewCell {
 
 class RecentCityTableViewCell: UITableViewCell {
     
-    lazy var dataArray:[String] = {
+    /*lazy var dataArray:[String] = {
         let path = Bundle.main.path(forResource: "HotCity", ofType: "plist")
         let array = NSArray(contentsOfFile: path!)
         return array as! [String]
-    }()
+    }()*/
     
     /// 点击按钮执行该闭包 (可选)
     var callBack: ((_ btn: UIButton) -> ())?
@@ -101,7 +101,9 @@ class RecentCityTableViewCell: UITableViewCell {
         
         
         // 动态创建最近城市btn
-        let dataCount = dataArray.count
+        guard let dataCount = dataArray?.count else {
+            return
+        }
         var count = 3
         if dataCount < 4 {
             count = dataCount
@@ -109,7 +111,7 @@ class RecentCityTableViewCell: UITableViewCell {
         for i in 0..<count {
             let x = btnMargin + CGFloat(i) * (btnMargin + btnWidth)
             let btn = UIButton(frame: CGRect(x: x, y: btnMargin, width: btnWidth, height: btnHeight))
-            btn.setTitle(dataArray[i], for: .normal)
+            btn.setTitle(dataArray![i].basic!.location, for: .normal)
             btn.setTitleColor(mainColor, for: .normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             btn.backgroundColor = UIColor.white

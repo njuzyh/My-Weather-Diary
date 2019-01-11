@@ -12,6 +12,7 @@ import CoreLocation
 import AVKit
 import AVFoundation
 import QuartzCore
+import HandyJSON
 
 class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -26,24 +27,38 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var long: CLLocationDegrees?
     var locality: String?
     
-    let apiId = "80697a31b403e5973752c4b6331206b5"
-    let locationManager = CLLocationManager()
+    //let apiId = "80697a31b403e5973752c4b6331206b5"
+    //let locationManager = CLLocationManager()
     var weatherData = WeatherData()
     
     override func viewDidLoad() {
-        locationManager.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: WeatherDataNotificationName, object: nil)
+        /*locationManager.delegate = self
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest*/
     }
     
-    
     @IBAction func triggerMenu(_ sender: Any) {
-        //self.delegate?.toggleLeftPanel!()
-        self.performSegue(withIdentifier: "displayMenu", sender: nil)
+        //self.performSegue(withIdentifier: "displayMenu", sender: nil)
+        //self.navigationController?.pushViewController(MenuViewController, animated: true)
     }
     
     @IBAction func triggerCity(_ sender: Any) {
-        self.performSegue(withIdentifier: "displayCity", sender: nil)
+        //self.performSegue(withIdentifier: "displayCity", sender: nil)
+        //self.navigationController?.pushViewController(CityViewController, animated: true)
+    }
+    
+    // MARK: 收到通知后 更新UI
+    @objc private func updateUI() {
+        // 更新数据
+        DispatchQueue.main.async {
+            
+        }
+    }
+    
+    // MARK: 移除通知
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,7 +83,7 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // 1. 還沒有詢問過用戶以獲得權限
+        /*// 1. 還沒有詢問過用戶以獲得權限
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
         }
@@ -79,10 +94,10 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         // 3. 用戶已經同意
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
-        }
+        }*/
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //取得locations数组的最后一个
         let location:CLLocation = locations.last!
         //判断是否为空
@@ -107,8 +122,8 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func getlocation(placemark: CLPlacemark) {
         // Do stuff with placemark
         self.locality = placemark.locality!
-        weatherData.city = placemark.locality!
-        getCurrentWeatherData()
+        //weatherData.city = placemark.locality!
+        //getCurrentWeatherData()
         updateWeatherData()
     }
     
@@ -134,7 +149,7 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 }
             }
         }
-    }
+    }*/
     
     func showAlert(_ title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -153,9 +168,9 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }
     */
     
-    func updateWeatherData()
+    /*func updateWeatherData()
     {
-        print(weatherData.city)
+        //print(weatherData.city)
         //cityname.text = "\(weatherData.city)"
         //temp.text = "\(weatherData.temperature)" + "°C"
     }
@@ -163,15 +178,23 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func getCurrentWeatherData(){
         //let tempcity = "nanjing"
         //let urlStr = "http://api.openweathermap.org/data/2.5/weather?q=\(self.locality ?? tempcity)&units=metric&appid=\(apiId)"
-        let urlStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(self.lat ?? 35)&lon=\(self.long ?? 139)&units=metric&appid=\(apiId)"
+        //let urlStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(self.lat ?? 35)&lon=\(self.long ?? 139)&units=metric&appid=\(apiId)"CN101010100
+        let urlStr = "https://free-api.heweather.net/s6/weather?location=beijing&key=c68be47d0d4f4b8c872aaaba34661372"
         let url = NSURL(string: urlStr)!
+        
         guard let weatherData = NSData(contentsOf: url as URL) else { return }
         
         //将获取到的数据转为json对象
         let jsonData = try! JSON(data: weatherData as Data)
-        print(jsonData)
         
-        //日期格式化输出
+        let weatherjson = jsonData["HeWeather6"][0]
+        print(weatherjson)
+        
+        let weather = JSONDeserializer<WeatherData>.deserializeFrom(json: weatherjson.rawString())
+        print("天气数据请求完毕,请求城市 " + (weather!.basic!.location ?? "nil"))
+        
+        
+        /*//日期格式化输出
         let dformatter = DateFormatter()
         dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
         
@@ -211,7 +234,7 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         let timeInterval3 = TimeInterval(truncating: jsonData["dt"].number!)
         let date3 = NSDate(timeIntervalSince1970: timeInterval3)
-        print("数据时间：\(dformatter.string(from: date3 as Date))")
+        print("数据时间：\(dformatter.string(from: date3 as Date))")*/
     }
 
     //获取未来天气数据（北京）
@@ -257,5 +280,5 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             let windSpeed = jsonData["wind"]["speed"].number!
             print("风速：\(windSpeed)m/s")
         }
-    }
+    }*/
 }

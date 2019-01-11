@@ -112,6 +112,7 @@
                                 <state key="normal" title="菜单"/>
                                 <connections>
                                     <action selector="triggerMenu:" destination="lsP-cY-l0Q" eventType="touchUpInside" id="Hy0-Sj-tdA"/>
+                                    <segue destination="wdZ-7C-hu3" kind="show" identifier="displayMenu" id="unC-1n-pOh"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -135,6 +136,7 @@
                                 <state key="normal" title="添加"/>
                                 <connections>
                                     <action selector="triggerCity:" destination="lsP-cY-l0Q" eventType="touchUpInside" id="7GR-in-d6z"/>
+                                    <segue destination="Rk5-Y7-Q91" kind="show" identifier="displayCity" id="TNn-HM-TGv"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -145,8 +147,6 @@
                         <outlet property="cityview" destination="2vL-Ca-YIp" id="fou-uG-8Rh"/>
                         <outlet property="temp" destination="qLC-8T-CkQ" id="qDv-L1-s6e"/>
                         <outlet property="weatherview" destination="Kyu-Og-0xr" id="7Jc-gY-lBC"/>
-                        <segue destination="wdZ-7C-hu3" kind="show" identifier="displayMenu" id="LXg-Iu-TUJ"/>
-                        <segue destination="Rk5-Y7-Q91" kind="show" identifier="displayCity" id="1Y3-hy-tdr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apA-uO-mWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,9 +510,11 @@
                         <outlet property="searchCity" destination="H14-JG-9ZN" id="BHj-mS-1Yr"/>
                         <outlet property="searchDisplayController" destination="5Yp-su-9C9" id="Yya-M0-Fy7"/>
                         <outlet property="tableView" destination="hpk-Rf-NI6" id="jmf-aQ-htz"/>
+                        <segue destination="Cl1-rU-0SJ" kind="unwind" identifier="backtoMain" unwindAction="unwindSegue:" id="rc8-tM-qxw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ep-Xr-ixc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Cl1-rU-0SJ" userLabel="Exit" sceneMemberID="exit"/>
                 <searchDisplayController id="5Yp-su-9C9">
                     <connections>
                         <outlet property="delegate" destination="Rk5-Y7-Q91" id="xAM-3K-h8E"/>
@@ -530,7 +532,22 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="bSt-mg-PxJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJP-jt-5MK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="23"/>
+            <point key="canvasLocation" x="-697" y="37"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ySo-Ja-XnH">
+            <objects>
+                <viewController id="30Z-nx-8yJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X8c-hr-yLa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Zwa-Sp-l9P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UNx-mZ-1JT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106" y="-20"/>
         </scene>
     </scenes>
     <resources>

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0AA2F61A67D233D260B0D124 /* Pods_My_Weather_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD87116EA7679CAFEEDE526 /* Pods_My_Weather_DiaryTests.framework */; };
 		18217E9921E8251100689261 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18217E9821E8251100689261 /* MenuViewController.swift */; };
+		18217E9B21E8609800689261 /* WeatherQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18217E9A21E8609800689261 /* WeatherQuery.swift */; };
+		18217E9D21E8685600689261 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18217E9C21E8685600689261 /* LocationManager.swift */; };
 		183591F821E714E2002F3D77 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183591F721E714E2002F3D77 /* Social.framework */; };
 		183591FA21E73092002F3D77 /* DiaryManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183591F921E73092002F3D77 /* DiaryManagerViewController.swift */; };
 		183591FC21E74484002F3D77 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183591FB21E74484002F3D77 /* DiaryViewController.swift */; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileReference section */
 		0CD87116EA7679CAFEEDE526 /* Pods_My_Weather_DiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Weather_DiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18217E9821E8251100689261 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		18217E9A21E8609800689261 /* WeatherQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherQuery.swift; sourceTree = "<group>"; };
+		18217E9C21E8685600689261 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		183591F721E714E2002F3D77 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		183591F921E73092002F3D77 /* DiaryManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryManagerViewController.swift; sourceTree = "<group>"; };
 		183591FB21E74484002F3D77 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			children = (
 				1898E48F21E391FD0062DE97 /* CityCell.swift */,
 				18540CC121B7F70700A4A030 /* WeatherData.swift */,
+				18217E9A21E8609800689261 /* WeatherQuery.swift */,
+				18217E9C21E8685600689261 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,6 +460,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1846AEF521B3E10F00E4019F /* CenterViewController.swift in Sources */,
+				18217E9B21E8609800689261 /* WeatherQuery.swift in Sources */,
+				18217E9D21E8685600689261 /* LocationManager.swift in Sources */,
 				1898E49221E3AFFC0062DE97 /* StringUtil.swift in Sources */,
 				1846AEF721B3E31F00E4019F /* CenterViewControllerDelegate.swift in Sources */,
 				1846AEF921B3E78A00E4019F /* ContainerViewController.swift in Sources */,
