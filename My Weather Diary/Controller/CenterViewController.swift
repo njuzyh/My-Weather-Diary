@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 import AVKit
 import AVFoundation
-import QuartzCore
 
 class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -38,8 +37,7 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     
     @IBAction func triggerMenu(_ sender: Any) {
-        //self.delegate?.toggleLeftPanel!()
-        self.performSegue(withIdentifier: "displayMenu", sender: nil)
+        self.delegate?.toggleLeftPanel!()
     }
     
     @IBAction func triggerCity(_ sender: Any) {
