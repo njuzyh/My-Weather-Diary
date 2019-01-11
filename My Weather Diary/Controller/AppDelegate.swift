@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // 若第一次启动 定位获取城市 并请求数据
+        if dataArray == nil {
+            MyLocation.getCurrentCity(compeletion: { (city) in
+                WeatherQuery.weatherData(cityName: city)
+            })
+        }
 
         return true
     }

@@ -14,12 +14,22 @@ import AVFoundation
 import QuartzCore
 import HandyJSON
 
-class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+
+class CenterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
 
     @IBOutlet weak var cityview: UIImageView!
     @IBOutlet weak var temp: UILabel!
     @IBOutlet weak var cityname: UILabel!
     @IBOutlet weak var weatherview: UIImageView!
+    @IBOutlet weak var weathertxt: UILabel!
+    @IBOutlet weak var loctionButton: UIButton!
+    
+    @IBOutlet weak var dailyTable: UITableView!
+    
+    @IBOutlet weak var hourlyTable: UITableView!
+    
+    @IBOutlet weak var lifeTable: UITableView!
     
     var delegate: CenterViewControllerDelegate?
     var temperature: String?
@@ -29,10 +39,41 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     //let apiId = "80697a31b403e5973752c4b6331206b5"
     //let locationManager = CLLocationManager()
-    var weatherData = WeatherData()
     
     override func viewDidLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: WeatherDataNotificationName, object: nil)
+        
+        // 设置代理属性
+        WeatherQuery.shared.delegate = self
+        
+        self.dailyTable.delegate = self
+        self.dailyTable.dataSource = self
+        self.hourlyTable.delegate = self
+        self.hourlyTable.dataSource = self
+        self.lifeTable.delegate = self
+        self.lifeTable.dataSource = self
+        //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.dailyTable.register(UINib(nibName: "DailyCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "dailycell")
+        self.hourlyTable.register(UINib(nibName: "HourlyCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "hourlycell")
+        self.lifeTable.register(UINib(nibName: "LifeCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "lifecell")
+        
+        if weather.basic != nil{
+            self.cityname.text = weather.basic!.location ?? "无数据"
+            self.loctionButton.setTitle(self.cityname.text, for: UIControl.State.normal)
+            self.weathertxt.text = weather.now!.cond_txt ?? "无数据"
+            self.temp.text = weather.now!.tmp ?? "无数据"
+            self.weatherview.image = WeatherData.getIcon(condcode: (weather.now?.cond_code)!)
+            
+            self.dailyTable.reloadData()
+            self.hourlyTable.reloadData()
+            self.lifeTable.reloadData()
+        }
+        // 定位
+        /*MyLocation.getCurrentCity(compeletion: { (city) in
+            self.loctionButton.setTitle(city, for: UIControl.State.normal)
+            self.cityname.text = city
+            WeatherQuery.weatherData(cityName: city)
+        })*/
         /*locationManager.delegate = self
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest*/
@@ -48,15 +89,91 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         //self.navigationController?.pushViewController(CityViewController, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.dailyTable == tableView {
+            if weather.daily_forecast == nil
+            {
+                return 0
+            }
+            return (weather.daily_forecast?.count)!
+        }
+        else if self.hourlyTable == tableView
+        {
+            if weather.hourly == nil
+            {
+                return 0
+            }
+            return (weather.hourly?.count)!
+        }
+        else
+        {
+            if weather.lifestyle == nil
+            {
+                return 0
+            }
+            return (weather.lifestyle?.count)!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.dailyTable == tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dailycell", for: indexPath) as! DailyCellTableViewCell
+            if weather.daily_forecast == nil
+            {
+                cell.weatherData = DailyForecast()
+            }
+            else
+            {
+                cell.weatherData = weather.daily_forecast![indexPath.row]
+            }
+            return cell
+        }
+        else if self.hourlyTable == tableView
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "hourlycell", for: indexPath) as! HourlyCellTableViewCell
+            if weather.hourly == nil
+            {
+                cell.weatherData = HourlyForecast()
+            }
+            else
+            {
+                cell.weatherData = weather.hourly![indexPath.row]
+            }
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "lifecell", for: indexPath) as! LifeCellTableViewCell
+            if weather.lifestyle == nil
+            {
+                cell.weatherData = Lifestyle()
+            }
+            else
+            {
+                cell.weatherData = weather.lifestyle![indexPath.row]
+            }
+            return cell
+        }
+    }
+    
     // MARK: 收到通知后 更新UI
     @objc private func updateUI() {
         // 更新数据
         DispatchQueue.main.async {
+            print("shoudaotongzhi")
+            self.cityname.text = weather.basic!.location ?? "无数据"
+            self.loctionButton.setTitle(self.cityname.text, for: UIControl.State.normal)
+            self.weathertxt.text = weather.now!.cond_txt ?? "无数据"
+            self.temp.text = weather.now!.tmp ?? "无数据"
+            self.weatherview.image = WeatherData.getIcon(condcode: (weather.now?.cond_code)!)
             
+            self.dailyTable.reloadData()
+            self.hourlyTable.reloadData()
+            self.lifeTable.reloadData()
         }
     }
-    
-    // MARK: 移除通知
+
+    /// MARK: 移除通知
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
@@ -158,6 +275,7 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
     /*
     // MARK: - Navigation
 
@@ -281,4 +399,13 @@ class CenterViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             print("风速：\(windSpeed)m/s")
         }
     }*/
+}
+
+extension CenterViewController: WeatherQueryDelegate {
+    // MARK: 更新数据失败
+    func getWeatherDataFailure() {
+        DispatchQueue.main.async {
+            self.showAlert("更新数据失败，请检查网络连接！")
+        }
+    }
 }

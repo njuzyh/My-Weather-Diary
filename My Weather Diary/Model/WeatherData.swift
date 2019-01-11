@@ -17,6 +17,7 @@ let dataArrPath = documentPath + "/dataArray.data"
 /// 全局天气数据
 var dataArray: [WeatherData]? = NSKeyedUnarchiver.unarchiveObject(withFile: dataArrPath) as? [WeatherData]
 
+var weather : WeatherData = WeatherData()
 
 class Weather{
     /// 城市
@@ -72,9 +73,12 @@ class WeatherData: HandyJSON{
     ///   - isBigPic: 是否是大图（若为ture则 返回大图）
     /// - Returns: 返回天气图标
     
-    func getIcon(condcode: Int) -> UIImage {
-        let code = condcode.description
-        return UIImage(named: code)!
+    class func getIcon(condcode: String) -> UIImage {
+        if UIImage(named: condcode) == nil
+        {
+            return UIImage(named: "999")!
+        }
+        return UIImage(named: condcode)!
     }
 }
 
@@ -110,7 +114,7 @@ class CurrentWeather: HandyJSON{
     /// 降水量
     var pcpn: String?
     /// 天气状态码
-    var cond_code: Int?
+    var cond_code: String?
 
     required init() {}
 }

@@ -42,6 +42,12 @@
 		1898E49221E3AFFC0062DE97 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898E49121E3AFFC0062DE97 /* StringUtil.swift */; };
 		1898E49421E3BC470062DE97 /* CityResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898E49321E3BC470062DE97 /* CityResultController.swift */; };
 		18D6868421B52CD500D9A998 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6868321B52CD500D9A998 /* SwiftyJSON.swift */; };
+		18FDB92E21E8B43B00EB62D0 /* DailyCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB92C21E8B43B00EB62D0 /* DailyCellTableViewCell.swift */; };
+		18FDB92F21E8B43B00EB62D0 /* DailyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FDB92D21E8B43B00EB62D0 /* DailyCellTableViewCell.xib */; };
+		18FDB93221E8B4F400EB62D0 /* HourlyCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB93021E8B4F400EB62D0 /* HourlyCellTableViewCell.swift */; };
+		18FDB93321E8B4F400EB62D0 /* HourlyCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FDB93121E8B4F400EB62D0 /* HourlyCellTableViewCell.xib */; };
+		18FDB93621E8B51800EB62D0 /* LifeCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB93421E8B51800EB62D0 /* LifeCellTableViewCell.swift */; };
+		18FDB93721E8B51800EB62D0 /* LifeCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FDB93521E8B51800EB62D0 /* LifeCellTableViewCell.xib */; };
 		A97A7AD5FD9C223C48F2B688 /* Pods_My_Weather_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D478BB99220068B992A98 /* Pods_My_Weather_Diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +103,12 @@
 		1898E49321E3BC470062DE97 /* CityResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityResultController.swift; sourceTree = "<group>"; };
 		18D6868321B52CD500D9A998 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		18D6868521B5777800D9A998 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		18FDB92C21E8B43B00EB62D0 /* DailyCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCellTableViewCell.swift; sourceTree = "<group>"; };
+		18FDB92D21E8B43B00EB62D0 /* DailyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCellTableViewCell.xib; sourceTree = "<group>"; };
+		18FDB93021E8B4F400EB62D0 /* HourlyCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCellTableViewCell.swift; sourceTree = "<group>"; };
+		18FDB93121E8B4F400EB62D0 /* HourlyCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyCellTableViewCell.xib; sourceTree = "<group>"; };
+		18FDB93421E8B51800EB62D0 /* LifeCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCellTableViewCell.swift; sourceTree = "<group>"; };
+		18FDB93521E8B51800EB62D0 /* LifeCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LifeCellTableViewCell.xib; sourceTree = "<group>"; };
 		57971D11BBDFE8EBD15BD161 /* Pods-My Weather Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Weather Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Weather Diary/Pods-My Weather Diary.release.xcconfig"; sourceTree = "<group>"; };
 		982D478BB99220068B992A98 /* Pods_My_Weather_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Weather_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89D30DD4A2BAFAA893F27D1 /* Pods-My Weather DiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Weather DiaryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My Weather DiaryTests/Pods-My Weather DiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +156,12 @@
 				18540CC121B7F70700A4A030 /* WeatherData.swift */,
 				18217E9A21E8609800689261 /* WeatherQuery.swift */,
 				18217E9C21E8685600689261 /* LocationManager.swift */,
+				18FDB92C21E8B43B00EB62D0 /* DailyCellTableViewCell.swift */,
+				18FDB92D21E8B43B00EB62D0 /* DailyCellTableViewCell.xib */,
+				18FDB93021E8B4F400EB62D0 /* HourlyCellTableViewCell.swift */,
+				18FDB93121E8B4F400EB62D0 /* HourlyCellTableViewCell.xib */,
+				18FDB93421E8B51800EB62D0 /* LifeCellTableViewCell.swift */,
+				18FDB93521E8B51800EB62D0 /* LifeCellTableViewCell.xib */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,9 +366,12 @@
 			files = (
 				1877DAF3219992B50083512C /* LaunchScreen.storyboard in Resources */,
 				18827D9F21B41FC50001ACA2 /* city.plist in Resources */,
+				18FDB92F21E8B43B00EB62D0 /* DailyCellTableViewCell.xib in Resources */,
 				1898E48E21E38C7B0062DE97 /* HotCity.plist in Resources */,
 				1877DAF0219992B50083512C /* Assets.xcassets in Resources */,
+				18FDB93721E8B51800EB62D0 /* LifeCellTableViewCell.xib in Resources */,
 				1877DAEE219992B40083512C /* Main.storyboard in Resources */,
+				18FDB93321E8B4F400EB62D0 /* HourlyCellTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +485,9 @@
 				18217E9D21E8685600689261 /* LocationManager.swift in Sources */,
 				1898E49221E3AFFC0062DE97 /* StringUtil.swift in Sources */,
 				1846AEF721B3E31F00E4019F /* CenterViewControllerDelegate.swift in Sources */,
+				18FDB93221E8B4F400EB62D0 /* HourlyCellTableViewCell.swift in Sources */,
 				1846AEF921B3E78A00E4019F /* ContainerViewController.swift in Sources */,
+				18FDB93621E8B51800EB62D0 /* LifeCellTableViewCell.swift in Sources */,
 				1877DAE9219992B40083512C /* AppDelegate.swift in Sources */,
 				1898E49421E3BC470062DE97 /* CityResultController.swift in Sources */,
 				1898E49021E391FD0062DE97 /* CityCell.swift in Sources */,
@@ -472,6 +495,7 @@
 				18D6868421B52CD500D9A998 /* SwiftyJSON.swift in Sources */,
 				183591FC21E74484002F3D77 /* DiaryViewController.swift in Sources */,
 				183591FA21E73092002F3D77 /* DiaryManagerViewController.swift in Sources */,
+				18FDB92E21E8B43B00EB62D0 /* DailyCellTableViewCell.swift in Sources */,
 				18540CC221B7F70700A4A030 /* WeatherData.swift in Sources */,
 				18827D9D21B413130001ACA2 /* CityViewController.swift in Sources */,
 			);

@@ -11,6 +11,7 @@ import Foundation
 
 /// 请求数据完成通知
 let WeatherDataNotificationName = Notification.Name(rawValue: "GetWeatherDataSuccessfuly")
+let notificationName = "XMNotification"
 
 class WeatherQuery {
     private let key = "&key=c68be47d0d4f4b8c872aaaba34661372"
@@ -19,6 +20,9 @@ class WeatherQuery {
     
     /// 创建单例
     static let shared = WeatherQuery()
+    
+    /// 代理
+    weak var delegate: WeatherQueryDelegate?
     
     /// 给外界提供 请求'天气数据'方法
     /// - Parameters:
@@ -48,12 +52,13 @@ class WeatherQuery {
         print(weatherjson)
         
         //let weather = WeatherData.deserialize(from: dict) ?? WeatherData()
-        let weather = JSONDeserializer<WeatherData>.deserializeFrom(json: weatherjson.rawString())
+        let newweather = JSONDeserializer<WeatherData>.deserializeFrom(json: weatherjson.rawString())
+        weather = newweather!
         
-        print("天气数据请求完毕,请求城市 " + (weather!.basic!.location ?? "nil"))
+        print("天气数据请求完毕,请求城市 " + (newweather!.basic!.location ?? "nil"))
         
         // 全局数据数组增加数据
-        self.dataArrayaddData(data: weather!, isUpdateData: isUpdateData)
+        self.dataArrayaddData(data: newweather!, isUpdateData: isUpdateData)
         // 数据请求完毕后 发送通知
         NotificationCenter.default.post(name: WeatherDataNotificationName, object: nil, userInfo: nil)
     }
@@ -95,4 +100,8 @@ class WeatherQuery {
         dataArray = dataArr
     }
     
+}
+
+protocol WeatherQueryDelegate: NSObjectProtocol {
+    func getWeatherDataFailure()
 }
